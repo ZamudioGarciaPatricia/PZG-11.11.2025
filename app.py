@@ -22,7 +22,7 @@ pokemon_info={'name', pokemon_data('name')
 try:
     resp = requests.get(f"{API}(pokemon_name)")
     if resp.status_code == 200:
-    pokemon_data = resp.json()
+        pokemon_data =resp.json()
     
     pokemon_info =  {
         'name': pokemon_data ['name'].title(),
@@ -30,11 +30,10 @@ try:
         'height': pokemon_data['height']/10,
         'weight': pokemon_data['weight']/10,
         'image': pokemon_data['sprites']['front_default']
-        'types': [t['type']['name'].title]() for t a in pokemon_data['ability'],
-        'stats': {}
-        
-    }
-    
+        'types': [t['type']['name'].title() for t a in pokemon_data,['types']],
+        'abilities': [a['ability']['name'].title() for a in pokemon_data['abilities']]
+}
+    except
     return render_template('pokemon2.html', pokemon= pokemon_info)
 if __name__ == '__main__':
     app.run(debug=True)
